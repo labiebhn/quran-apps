@@ -1,22 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
 
-import {useTheme} from '@react-navigation/native';
+import App from './app';
+import {persistor, store} from './store';
 
 const Root = () => {
-  const styles = useStyles();
   return (
-    <View style={styles.container}>
-      <Text>Root</Text>
-    </View>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
   );
 };
 
 export default Root;
-
-const useStyles = () => {
-  const {colors} = useTheme();
-  return StyleSheet.create({
-    container: {},
-  });
-};
