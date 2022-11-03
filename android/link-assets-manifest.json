@@ -1,0 +1,29 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Amiri-Bold.ttf",
+      "sha1": "9ef69b5108cd25a0cc811b4d48736ce12fadbd34"
+    },
+    {
+      "path": "src/assets/fonts/Amiri-BoldSlanted.ttf",
+      "sha1": "5331cd24cfb44e1ef2397d107b9a2d1f9d0ed3f1"
+    },
+    {
+      "path": "src/assets/fonts/Amiri-Regular.ttf",
+      "sha1": "d20776eda5b52c535a973950d5f4547913f50323"
+    },
+    {
+      "path": "src/assets/fonts/Amiri-Slanted.ttf",
+      "sha1": "fc3025192f55ee5223b16a49c1a49f03d6b172f8"
+    },
+    {
+      "path": "src/assets/fonts/AmiriQuran.ttf",
+      "sha1": "a71f5caaa7044d106881371ce9cbd558f1e7c26b"
+    },
+    {
+      "path": "src/assets/fonts/AmiriQuranColored.ttf",
+      "sha1": "763f0ce3e57e039d0c6b96d5dfe342a8d9924177"
+    }
+  ]
+}
