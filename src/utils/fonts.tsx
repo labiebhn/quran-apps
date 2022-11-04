@@ -3,15 +3,20 @@ import {Platform} from 'react-native';
 export const fontFamily = {
   Amiri: {
     regular: 'Amiri-Regular',
-    slanted: 'Amiri-Slanted',
+    italic: 'Amiri-Slanted',
     bold: 'Amiri-Bold',
-    boldSlanted: 'Amiri-BoldSlanted',
-    quran: 'AmiriQuran',
-    quranColored: 'AmiriQuranColored',
+    boldItalic: 'Amiri-BoldSlanted',
+  },
+  Poppins: {
+    light: 'Poppins-Light',
+    regular: 'Poppins-Regular',
+    medium: 'Poppins-Medium',
+    bold: 'Poppins-Bold',
+    boldItalic: 'Poppins-BoldItalic',
   },
 };
 
-const familyDefault = fontFamily.Amiri;
+const familyDefault = fontFamily.Poppins;
 const marginBottom = 0;
 
 export const fonts = {
