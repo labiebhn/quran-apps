@@ -27,7 +27,7 @@ export const palettes = {
     textPlaceholder: '#C4C4C4',
     textError: '#EE3124',
     textActive: '#0092AC',
-    border: '#DEE3ED',
+    border: '#F1F3F7',
     devider: '#F1F3F7',
     card: '#f6f6f6',
     accent: '#EBF0FF',

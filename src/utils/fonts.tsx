@@ -17,7 +17,7 @@ export const fontFamily = {
 };
 
 const familyDefault = fontFamily.Poppins;
-const marginBottom = 0;
+const marginBottom = Platform.OS === 'android' ? -2 : 0;
 
 export const fonts = {
   banner1: {
@@ -90,13 +90,23 @@ export const fonts = {
     fontFamily: familyDefault.bold,
     marginBottom,
   },
-  btn1: {
-    fontSize: 12,
-    fontFamily: familyDefault.bold,
-    marginBottom,
-  },
   input: {
     fontSize: 12,
     fontFamily: familyDefault.regular,
+  },
+  arabic1: {
+    fontSize: 36,
+    fontFamily: fontFamily.Amiri.bold,
+    marginBottom,
+  },
+  arabic2: {
+    fontSize: 27,
+    fontFamily: fontFamily.Amiri.bold,
+    marginBottom,
+  },
+  arabic3: {
+    fontSize: 22,
+    fontFamily: fontFamily.Amiri.bold,
+    marginBottom,
   },
 };
