@@ -21,14 +21,20 @@ const SurahDetail = ({navigation, route}: any) => {
         data={sortSurahData(data?.text)}
         keyExtractor={(item, index) => index?.toString()}
         renderItem={({item, index}) => {
-          let ayah = data?.text?.[item];
-          let translation = data?.translations?.[language]?.text?.[item];
+          const payload = {
+            surah_order: route?.params?.order,
+            name: data?.name,
+            name_latin: data?.name_latin,
+            number_of_ayah: data?.number_of_ayah,
+            order: item,
+            ayah: data?.text?.[item],
+            translation: data?.translations?.[language]?.text?.[item],
+          };
           return (
             <CardAyah
-              order={item}
-              ayah={ayah}
-              translation={translation}
+              {...payload}
               zebra={index % 2}
+              onPress={() => navigation.navigate('ayah-detail', payload)}
             />
           );
         }}

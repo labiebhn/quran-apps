@@ -12,14 +12,22 @@ export interface CardAyahProps {
   ayah?: string;
   translation?: string;
   zebra?: any;
+  onPress?(): void;
 }
 
-const CardAyah: FC<CardAyahProps> = ({order, ayah, translation, zebra}) => {
+const CardAyah: FC<CardAyahProps> = ({
+  order,
+  ayah,
+  translation,
+  zebra,
+  onPress,
+}) => {
   const {colors} = useTheme();
   const styles = useStyles(zebra);
   return (
     <TouchableNativeFeedback
-      background={TouchableNativeFeedback.Ripple(colors.border, false)}>
+      background={TouchableNativeFeedback.Ripple(colors.border, false)}
+      onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.content}>
           <BadgeAyah title={order} />

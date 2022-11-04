@@ -7,10 +7,11 @@ import {fonts} from '../../../utils/fonts';
 
 export interface TextAyahProps extends TextProps {
   children?: any;
+  textAlign?: 'center' | 'left' | 'right' | 'justify';
 }
 
 const TextAyah: FC<TextAyahProps> = props => {
-  const styles = useStyles();
+  const styles = useStyles(props.textAlign);
   return (
     <Text style={styles.ayah} {...props}>
       {props.children}
@@ -20,13 +21,13 @@ const TextAyah: FC<TextAyahProps> = props => {
 
 export default TextAyah;
 
-const useStyles = () => {
+const useStyles = (textAlign?: any) => {
   const {colors} = useTheme();
   return StyleSheet.create({
     ayah: {
       ...fonts.arabic3,
       color: colors.text,
-      textAlign: 'right',
+      textAlign: textAlign || 'right',
       lineHeight: 64,
     },
   });
