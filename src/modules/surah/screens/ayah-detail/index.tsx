@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {useTheme} from '@react-navigation/native';
 
@@ -20,18 +20,22 @@ const AyahDetail = ({navigation, route}: any) => {
     translation,
   } = route.params;
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <TextAyah textAlign={'center'}>{ayah}</TextAyah>
-        <Gap height={8} />
-        <Text style={styles.translation}>{translation}</Text>
-        <Gap height={26} />
-        <Text style={styles.surah}>
-          {surah_order}. {name_latin} ∘{' '}
-          <Text style={{color: colors.primary}}>Ayat {order}</Text>
-        </Text>
-      </View>
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.content}>
+          <TextAyah textAlign={'center'}>{ayah}</TextAyah>
+          <Gap height={26} />
+          <Text style={styles.translation}>{translation}</Text>
+          <Gap height={26} />
+          <Text style={styles.surah}>
+            {surah_order}. {name_latin} ∘{' '}
+            <Text style={{color: colors.primary}}>Ayat {order}</Text>
+          </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -40,10 +44,14 @@ export default AyahDetail;
 const useStyles = () => {
   const {colors} = useTheme();
   return StyleSheet.create({
-    container: {
+    safeArea: {
       flex: 1,
+    },
+    container: {
+      flexGrow: 1,
       justifyContent: 'center',
       alignItems: 'center',
+      paddingVertical: 32,
     },
     content: {
       width: '80%',

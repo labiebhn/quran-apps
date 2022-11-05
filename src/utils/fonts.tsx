@@ -14,9 +14,14 @@ export const fontFamily = {
     bold: 'Poppins-Bold',
     boldItalic: 'Poppins-BoldItalic',
   },
+  LPMQ: {
+    regular: 'LPMQ-Regular',
+  },
 };
 
 const familyDefault = fontFamily.Poppins;
+const familyArabicDefault =
+  Platform.OS === 'ios' ? fontFamily.Amiri : fontFamily.LPMQ;
 const marginBottom = Platform.OS === 'android' ? -2 : 0;
 
 export const fonts = {
@@ -96,17 +101,17 @@ export const fonts = {
   },
   arabic1: {
     fontSize: 36,
-    fontFamily: fontFamily.Amiri.bold,
+    fontFamily: familyArabicDefault.regular,
     marginBottom,
   },
   arabic2: {
     fontSize: 27,
-    fontFamily: fontFamily.Amiri.bold,
+    fontFamily: familyArabicDefault.regular,
     marginBottom,
   },
   arabic3: {
     fontSize: 22,
-    fontFamily: fontFamily.Amiri.bold,
+    fontFamily: familyArabicDefault.regular,
     marginBottom,
   },
 };

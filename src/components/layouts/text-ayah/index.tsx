@@ -28,7 +28,7 @@ const useStyles = (textAlign?: any) => {
       ...fonts.arabic3,
       color: colors.text,
       textAlign: textAlign || 'right',
-      lineHeight: 64,
+      lineHeight: 54,
     },
   });
 };

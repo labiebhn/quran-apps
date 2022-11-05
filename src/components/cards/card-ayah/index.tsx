@@ -30,8 +30,11 @@ const CardAyah: FC<CardAyahProps> = ({
       onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.content}>
-          <BadgeAyah title={order} />
-          <Gap width={4} />
+          <View>
+            <Gap height={8} />
+            <BadgeAyah title={order} />
+          </View>
+          <Gap width={8} />
           <View style={styles.ayah}>
             <TextAyah>{ayah}</TextAyah>
           </View>
@@ -54,7 +57,6 @@ const useStyles = (zebra?: any) => {
     },
     content: {
       flexDirection: 'row',
-      alignItems: 'center',
     },
     ayah: {
       flex: 1,
@@ -63,7 +65,7 @@ const useStyles = (zebra?: any) => {
       ...fonts.h6,
       fontFamily: fontFamily.Poppins.medium,
       color: colors.text,
-      textAlign: 'justify',
+      textAlign: 'left',
       lineHeight: 26,
     },
   });
