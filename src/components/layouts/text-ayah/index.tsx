@@ -1,22 +1,34 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {FC} from 'react';
+import {StyleSheet, Text, TextProps, View} from 'react-native';
 
 import {useTheme} from '@react-navigation/native';
 
-const TextAyah = () => {
-  const styles = useStyles();
+import {fonts} from '../../../utils/fonts';
+
+export interface TextAyahProps extends TextProps {
+  children?: any;
+  textAlign?: 'center' | 'left' | 'right' | 'justify';
+}
+
+const TextAyah: FC<TextAyahProps> = props => {
+  const styles = useStyles(props.textAlign);
   return (
-    <View style={styles.container}>
-      <Text>TextAyah</Text>
-    </View>
+    <Text style={styles.ayah} {...props}>
+      {props.children}
+    </Text>
   );
 };
 
 export default TextAyah;
 
-const useStyles = () => {
+const useStyles = (textAlign?: any) => {
   const {colors} = useTheme();
   return StyleSheet.create({
-    container: {},
+    ayah: {
+      ...fonts.arabic3,
+      color: colors.text,
+      textAlign: textAlign || 'right',
+      lineHeight: 54,
+    },
   });
 };

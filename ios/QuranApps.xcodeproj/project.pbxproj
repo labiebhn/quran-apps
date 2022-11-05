@@ -20,6 +20,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		98E4E02A0F794501B4D869F8 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E025C445E6E4FA89B1717AD /* Poppins-Light.ttf */; };
 		A803066B0DF64BE5B0247EDB /* Amiri-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 319B260A881F4B60B95A8E8C /* Amiri-Regular.ttf */; };
+		AE67791AB6A946C59921FB1D /* LPMQ-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 209B7C3592284D709A705DF3 /* LPMQ-Regular.ttf */; };
 		B59A221E3CC148D8A175640B /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E73C8749DD8643E394CB27E7 /* Poppins-Thin.ttf */; };
 		D1276F6AED334292B7B65AEF /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49578590845E465C9F1AAC41 /* Poppins-ExtraLight.ttf */; };
 		D29F255ADE354BF69D940C94 /* Amiri-Slanted.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB4042469C5D4333AD98B023 /* Amiri-Slanted.ttf */; };
@@ -50,6 +51,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = QuranApps/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = QuranApps/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-QuranApps-QuranAppsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QuranApps-QuranAppsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		209B7C3592284D709A705DF3 /* LPMQ-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "LPMQ-Regular.ttf"; path = "../src/assets/fonts/LPMQ-Regular.ttf"; sourceTree = "<group>"; };
 		319B260A881F4B60B95A8E8C /* Amiri-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Amiri-Regular.ttf"; path = "../src/assets/fonts/Amiri-Regular.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-QuranApps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuranApps.debug.xcconfig"; path = "Target Support Files/Pods-QuranApps/Pods-QuranApps.debug.xcconfig"; sourceTree = "<group>"; };
 		40F550ACB2AE4209B960842D /* Amiri-BoldSlanted.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Amiri-BoldSlanted.ttf"; path = "../src/assets/fonts/Amiri-BoldSlanted.ttf"; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				765A598C2985441BBCA8A032 /* Poppins-Regular.ttf */,
 				9972E76EA3C0453B9FC14FF9 /* Poppins-SemiBold.ttf */,
 				E73C8749DD8643E394CB27E7 /* Poppins-Thin.ttf */,
+				209B7C3592284D709A705DF3 /* LPMQ-Regular.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -305,6 +308,7 @@
 				27CC8ABE32EE46E3A22FAC29 /* Poppins-Regular.ttf in Resources */,
 				F0D2E9868C0C4F4CAB755C2F /* Poppins-SemiBold.ttf in Resources */,
 				B59A221E3CC148D8A175640B /* Poppins-Thin.ttf in Resources */,
+				AE67791AB6A946C59921FB1D /* LPMQ-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
