@@ -2,8 +2,8 @@ import {Platform} from 'react-native';
 
 export const palettes = {
   default: {
-    primary: '#55acee',
-    primaryTransparent: '#55acee43',
+    primary: '#31b635',
+    primaryTransparent: '#31b63543',
     secondary: '#FFC300',
     secondaryDisabled: '#8ECED2',
     secondaryTransparent: '#0092AC1A',
@@ -39,8 +39,8 @@ export const palettes = {
     elevationMedium: Platform.Version >= 30 ? 8 : 2.5,
   },
   dark: {
-    primary: '#55acee',
-    primaryTransparent: '#55acee43',
+    primary: '#31b635',
+    primaryTransparent: '#31b63543',
     secondary: '#FFC300',
     secondaryDisabled: '#8ECED2',
     secondaryTransparent: '#0092AC1A',
