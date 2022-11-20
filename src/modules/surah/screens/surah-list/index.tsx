@@ -32,7 +32,6 @@ const SurahList = ({navigation}: any) => {
                 arabicTitle={data?.name}
                 onPress={() =>
                   navigation.navigate('surah-detail', {
-                    key: item,
                     order: data?.number,
                   })
                 }

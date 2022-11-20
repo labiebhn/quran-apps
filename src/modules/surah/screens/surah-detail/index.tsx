@@ -1,25 +1,41 @@
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {shallowEqual} from 'react-redux';
 
 import {useTheme} from '@react-navigation/native';
 
 import {CardAyah} from '../../../../components/cards';
-import {Navbar} from '../../../../components/layouts';
+import {Gap, Navbar} from '../../../../components/layouts';
+import {ModalRecitation} from '../../../../components/modals';
 import {SURAH} from '../../../../database';
+import {useAppDispatch, useAppSelector} from '../../../../store/hooks';
 import {sortSurahData} from '../../../../utils/mapping';
+import {getSurahRecitation} from '../../store/surahThunk';
 
 const SurahDetail = ({navigation, route}: any) => {
   const styles = useStyles();
   const language = 'id';
+  const {order} = route.params;
   const surah: any = SURAH;
-  const data = surah?.[route?.params?.key]?.[route?.params?.order] || null;
+  const data = surah?.[`surah${order}`]?.[order] || null;
+  const dispatch = useAppDispatch();
+  const recitation = useAppSelector(
+    state => state.surah.recitation,
+    shallowEqual,
+  );
+
+  useEffect(() => {
+    dispatch(getSurahRecitation(order));
+  }, [order]);
+
   return data ? (
     <View style={styles.safeArea}>
       <Navbar title={data?.name_latin} />
       <FlatList
         data={sortSurahData(data?.text)}
         keyExtractor={(item, index) => index?.toString()}
+        ListFooterComponent={<Gap height={106} />}
         renderItem={({item, index}) => {
           const payload = {
             surah_order: route?.params?.order,
@@ -39,6 +55,7 @@ const SurahDetail = ({navigation, route}: any) => {
           );
         }}
       />
+      <ModalRecitation surah={data} />
     </View>
   ) : (
     <View />

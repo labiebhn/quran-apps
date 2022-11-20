@@ -30,8 +30,6 @@ export default ButtonIcon;
 const useStyles = () => {
   const {colors} = useTheme();
   return StyleSheet.create({
-    container: {
-      padding: 8,
-    },
+    container: {},
   });
 };
