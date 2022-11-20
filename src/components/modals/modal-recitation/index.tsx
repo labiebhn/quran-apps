@@ -6,10 +6,12 @@ import {shallowEqual} from 'react-redux';
 
 import {useTheme} from '@react-navigation/native';
 
-import {setSelectedRecitate} from '../../../modules/surah/store/surahSlice';
+import {setSelectedDownload, setSelectedRecitate} from '../../../modules/surah/store/surahSlice';
+import {downloadSurahRecitation} from '../../../modules/surah/store/surahThunk';
 import {useAppDispatch, useAppSelector} from '../../../store/hooks';
 import {CardRecitationType} from '../../../types/components';
 import {fontFamily, fonts} from '../../../utils/fonts';
+import {setProgressIndicator} from '../../../utils/helpers';
 import {CardRecitation} from '../../cards';
 
 export interface ModalRecitationProps {
@@ -30,6 +32,7 @@ const ModalRecitation: FC<ModalRecitationProps> = ({
   const styles = useStyles();
   const {width, height} = useWindowDimensions();
   const dispatch = useAppDispatch();
+  const download = useAppSelector(state => state.surah.download, shallowEqual);
   const recitation = useAppSelector(
     state => state.surah.recitation,
     shallowEqual,
@@ -75,6 +78,13 @@ const ModalRecitation: FC<ModalRecitationProps> = ({
 
   const getCardRecitateType = (item?: any): CardRecitationType => {
     let result: CardRecitationType;
+    if (
+      download.loading === 'pending' &&
+      download.selectedRecitate?.subfolder === item?.subfolder
+    ) {
+      result = 'progress';
+      return result;
+    }
     if (loading === 'pending') {
       result = 'loading';
       return result;
@@ -82,6 +92,18 @@ const ModalRecitation: FC<ModalRecitationProps> = ({
     if (typeof item?.isFileComplete === 'boolean') {
       result = !item.isFileComplete ? 'download' : undefined;
       return result;
+    }
+  };
+
+  const handleDownloadRecitate = (item: any) => {
+    if (download.loading !== 'pending') {
+      dispatch(setSelectedDownload(item));
+      dispatch(
+        downloadSurahRecitation({
+          surahOrder: surah?.number,
+          subfolder: item?.subfolder,
+        }),
+      );
     }
   };
 
@@ -129,7 +151,8 @@ const ModalRecitation: FC<ModalRecitationProps> = ({
                 title={item?.name}
                 active={selectedRecitate?.subfolder === item?.subfolder}
                 type={getCardRecitateType(item)}
-                onDownloadPress={() => onDownloadPress?.(item?.subfolder)}
+                progress={setProgressIndicator(download.progress)}
+                onDownloadPress={() => handleDownloadRecitate(item)}
                 onPress={() => handleSelectedRecitate(item)}
               />
             </View>

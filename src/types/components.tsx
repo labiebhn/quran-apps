@@ -1,1 +1,1 @@
-export type CardRecitationType = 'download' | 'progress' | 'loading' | undefined;
+export type CardRecitationType = 'download' | 'progress' | 'loading' | 'play' | undefined;

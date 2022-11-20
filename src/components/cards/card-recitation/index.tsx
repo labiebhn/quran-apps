@@ -4,7 +4,7 @@ import * as Progress from 'react-native-progress';
 
 import {useTheme} from '@react-navigation/native';
 
-import {IconDownload} from '../../../assets';
+import {IconDownload, IconPlay} from '../../../assets';
 import {CardRecitationType} from '../../../types/components';
 import {fonts} from '../../../utils/fonts';
 import {ButtonIcon} from '../../buttons';
@@ -95,6 +95,8 @@ const useStyles = (active?: boolean) => {
     action: {
       width: 20,
       height: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   });
 };

@@ -1,3 +1,7 @@
+import RNFS from 'react-native-fs';
+
+import {RECITATIONS} from '../database';
+
 export const setErrorMessage = (action: any) => {
   let error = action?.paylaod || action;
   let message =
@@ -19,7 +23,6 @@ export const setErrorMessage = (action: any) => {
 };
 
 export const setRecitateFileName = (
-  subfolder: string,
   surahOrder: string,
   ayah: string,
 ): string => {
@@ -30,6 +33,48 @@ export const setRecitateFileName = (
     orderName[iReverse] = surahOrder[i] || 0;
     ayahName[iReverse] = ayah[i] || 0;
   }
-  let result = `${subfolder}/${orderName.join('')}${ayahName.join('')}`;
+  let result = `${orderName.join('')}${ayahName.join('')}`;
   return result;
+};
+
+export const percentage = (patrial: number, total: number) => {
+  return (100 * patrial) / total;
+};
+
+export const checkRecitationFiles = (surahOrder: any) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      let result = [];
+      let i = 0;
+      for (let recitation of RECITATIONS.data) {
+        let isFileComplete = true;
+        let dirPath = `${RNFS.DocumentDirectoryPath}`;
+        await RNFS.readDir(dirPath)
+          .then(dirFiles => {
+            // Get selected recitation files
+            let recitateFiles = [];
+            for (let item of dirFiles) {
+              let isFileExist = item?.name?.includes(recitation?.subfolder);
+              if (isFileExist) {
+                recitateFiles.push(item?.name);
+              }
+            }
+            // Check recitation files is complete
+            if (recitateFiles?.length < RECITATIONS.ayahCount[surahOrder - 1]) {
+              isFileComplete = false;
+            }
+          })
+          .catch(() => (isFileComplete = false));
+        let payload = {...recitation, isFileComplete};
+        result[i] = payload;
+        i++;
+      }
+      resolve(result);
+    } catch (error: any) {
+      reject(error);
+    }
+  });
+
+export const setProgressIndicator = (progres: number) => {
+  return Math.round(Math.round(progres) * 100) / 10000;
 };

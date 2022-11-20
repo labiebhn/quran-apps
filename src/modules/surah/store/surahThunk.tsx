@@ -2,31 +2,66 @@ import RNFS from 'react-native-fs';
 
 import {createAsyncThunk} from '@reduxjs/toolkit';
 
-import {RECITATIONS, SURAH} from '../../../database';
-import {setErrorMessage, setRecitateFileName} from '../../../utils/helpers';
+import CONFIGS from '../../../configs';
+import {SURAH} from '../../../database';
+import {
+  checkRecitationFiles,
+  percentage,
+  setErrorMessage,
+  setRecitateFileName
+} from '../../../utils/helpers';
 import {sortSurahData} from '../../../utils/mapping';
+import {setAyahDownloaded, setDownloadProgress} from './surahSlice';
 
 export const getSurahRecitation = createAsyncThunk(
   'surah/getSurahRecitation',
   async (surahOrder: any, {rejectWithValue, getState}) => {
     try {
-      let result = [];
+      let result = await checkRecitationFiles(surahOrder);
+      return {data: result};
+    } catch (error: any) {
+      return rejectWithValue(setErrorMessage(error));
+    }
+  },
+);
 
-      let i = 0;
-      for (let recitation of RECITATIONS.data) {
-        let isFileComplete = true;
-        let dirPath = `${RNFS.DocumentDirectoryPath}/${recitation?.subfolder}/${surahOrder}`;
-        const dirFiles: any = await RNFS.readDir(dirPath).catch(
-          () => (isFileComplete = false),
-        );
-        if (dirFiles?.length < RECITATIONS.ayahCount[surahOrder - 1]) {
-          isFileComplete = false;
+export const downloadSurahRecitation = createAsyncThunk(
+  'surah/downloadSurahRecitation',
+  async (
+    {surahOrder, subfolder}: {surahOrder: any; subfolder: any},
+    {rejectWithValue, getState, dispatch},
+  ) => {
+    try {
+      let surah: any = SURAH;
+      surah = surah?.[`surah${surahOrder}`]?.[surahOrder] || null;
+      const ayahOrder = sortSurahData(surah?.text);
+
+      let downloadProgress = 0;
+      for (let ayah of ayahOrder) {
+        const downloadPercentage = percentage(1, ayahOrder.length);
+        const fileName = setRecitateFileName(surahOrder, ayah);
+        const fileExt = '.mp3';
+        const dirPath = `${RNFS.DocumentDirectoryPath}/${subfolder}_${fileName}${fileExt}`;
+
+        const isFileExist: boolean = await RNFS.exists(dirPath);
+        if (isFileExist) {
+          downloadProgress += downloadPercentage;
+          dispatch(setAyahDownloaded(ayah));
+          dispatch(setDownloadProgress(downloadProgress));
+          continue;
         }
-        let payload = {...recitation, isFileComplete};
-        result[i] = payload;
-        i++;
-      }
 
+        const url = `${CONFIGS.RECITATE_BASE_URL}/data/${subfolder}/${fileName}${fileExt}`;
+        const options = {
+          fromUrl: url,
+          toFile: dirPath,
+        };
+        await RNFS.downloadFile(options).promise;
+        downloadProgress += downloadPercentage;
+        dispatch(setAyahDownloaded(ayah));
+        dispatch(setDownloadProgress(downloadProgress));
+      }
+      let result = await checkRecitationFiles(surahOrder);
       return {data: result};
     } catch (error: any) {
       return rejectWithValue(setErrorMessage(error));
